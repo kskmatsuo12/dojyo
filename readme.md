@@ -1,4 +1,4 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+<h1 align="center">世界を変えるdojyoを作ろう</h1>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -7,52 +7,79 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+## ブランチの使い分け
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+master：本番環境
+release:（本来は本番に放り込む前にテストしてこれをmasterにpushするはずなのですが、）今回は、正しく動作しているチェックポイントとしてバックアップに使いたいと思います。
+develop:開発環境、機能が完成したら、作業用のブランチからここにプルリクエストを飛ばしてください。
+feat/???:新規機能を作成中に使用するブランチ。４人別々の作業をすると思うので、各自作成してください。
+fix/???:少しバグを修正したい時に使用するブランチ。４人別々の作業をすると思うので、各自作成してください。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 基本的な流れ
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+①各自featかfixブランチのローカルで作業して、作業の経過をcommitしておく（この辺りは個人作業なので報告不要）
+　　※commitメッセージに関しては下記でルールを記載します。
 
-## Learning Laravel
+②作業がひと段落して、機能が完成したら、ローカルで作業しているブランチからremoteの同ブランチへpushする。
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+③developへプルリクエスト→マージする（報告必須！）
+　コンフリクト発生時は慌てず騒がず。コンフリクトに関しては下記でルールを記載します。
+ 
+④developからpullしてブランチを最新の状態にして作業を再開
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+※ややこしいのですが、履歴は全てgithub上で見れるので、ミスがあったら巻き戻れば良いだけなのでガンガン使っていきましょう。
+※開発段階ではデータベースに情報が溜まらないので大惨事にはならないはずです！
 
-## Laravel Sponsors
+## commitメッセージについて
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+１行目に、何の作業をしたのか他の人に伝わりやすく書きましょう。
+２行目以降は自由に伝えたいこと、自分のメモなど。
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
+## コンフリクト発生時の注意
 
-## Contributing
+深呼吸する。
+ギットクラーケンの赤文字は基本的にノリでOKを押さない方が良いかもです。
+コンフリクト発生時は、Github上で正しい方を残して更新する方法が一番簡単だと思います。
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+作業が多い場合は、一度ローカルのdevelopでpullをして最新状態にします。
+ローカルdevelop→作業したブランチへマージ。
+コンフリクトが起きるので修正をしてブランチをステージング→pushする。
+もう一度remote上でdevelopへプルリクエストするとmergeされて成功！
 
-## Security Vulnerabilities
+コンフリクトが発生したとき他の人が何の作業をしたのか確認をして修正するようです。
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+## ファイル名とファイルの分け方
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+完全に表示されるページを分けた方が分かりやすいと思います。
+もちろん、usersの中にフォルダを作成して見やすくしてもOKです！
+
+【View】
+resouces→view→users→???.blade.php
+resouces→view→clients→???.blade.php
+resouces→view→admin→???.blade.php
+
+【CSS】
+public→css→users→???.css
+public→css→clients→???.css
+public→css→admin→???.css
+
+【JS】
+public→js→users→???.js
+public→js→clients→???.js
+public→js→admin→???.js
+
+対応するViewとCSSとJSは【同じ名称にする】
+
+layouts.appには絶対に共通になるであろうheadタグだけ記載し、
+CSSやJSはViewごとに読み込むファイルを記載する。
+
+
+##composerの利用について
+
+composerで追加した機能は共有していきましょう。
+コマンドを叩いて導入したものは、まとめておいて、いざというときの復元作業で使うことがあるようです。
+（Qiitaの本番環境でやらかした記事より）
+
+
+##どんどんルールの追記お願いします。
